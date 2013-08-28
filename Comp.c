@@ -67,11 +67,11 @@ int main() {
 double v_prime( double v, double r) {
   
 	if (x<edge):
-		return -b*e*ps
+		return -b*e*ps;
 	if (x>edge):
-		return -b*(e-v)*ps
+		return -b*(e-v)*ps;
 	if (x==edge):
-		return-b(e-0.5*v)*ps
+		return-b(e-0.5*v)*ps;
   //return B*(U-E)*r;
   
 }
