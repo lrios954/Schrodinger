@@ -5,37 +5,38 @@
 //X es Velocidad, Y es radio
 
 
-#define B 1.0
-#define E 1.0
-#define U 2.0
+#define B 134.95
+#define E 0.72884799
+#define U 1.0
+#define edge 1.0
+
 
 int main() {
   
 
 		
-		double cond1 = 0.0;
+		double cond1 = 1.0;
 		
-                double cond2 = 1;
+                double cond2 = 0;
   
 
   FILE *export;
   export = fopen("Tabla_datos", "w");
   double h;
   int n_points;
-  h = 1E3;
-  n_points = h;
+  h = 0.01;
+  n_points = 100;
   
   
   double *t;
   double *x;
   double *y;
-  double *p;
   
   
   x = malloc(n_points*sizeof(double));
   y = malloc(n_points*sizeof(double));
   t = malloc(n_points*sizeof(double));
-  p = malloc(n_points*sizeof(double));
+ 
   
   if (!x || !y || !t){
     printf("Error en memoria");
@@ -46,7 +47,7 @@ int main() {
   x[0] = cond1;
   y[0] = cond2;
   t[0] = 0.0;
-  p[0] = 5.6E5;
+  
   
   fprintf(export,"%f %f %f \n", t[0],x[0],y[0]);
   
@@ -65,7 +66,13 @@ int main() {
 //Funciones
 double v_prime( double v, double r) {
   
-  return B*(U-E)*r;
+	if (x<edge):
+		return -b*e*ps
+	if (x>edge):
+		return -b*(e-v)*ps
+	if (x==edge):
+		return-b(e-0.5*v)*ps
+  //return B*(U-E)*r;
   
 }
 
@@ -76,7 +83,6 @@ double r_prime( double v, double r) {
 }
 
 
-//Metodo basado en los codigos en python vistos en clase
 int rungekutta(int i, double *x,double *y,double *t, double h)
 {
   //X corresponde a la velocidad	
