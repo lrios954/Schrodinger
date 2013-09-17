@@ -23,14 +23,14 @@ def y2_prime(u,y1,y2,E,l):
 
 a = 0.0
 b = 45.0
-h = 0.1
+h = 0.0001
 
 n_points = int((b-a)/h)
 u = [a+i*h for i in range(1,n_points+1)]
 
 for n in range(1,4):
      #E = -1.0/float(n**2)
-     E= -1.0/100.0
+     E= -1.0/100
      L = [l*(l+1) for l in range(n)]
      for l in range(len(L)):
           print 'solving for: n = '+str(n)+', l = '+str(l)
@@ -62,7 +62,7 @@ for n in range(1,4):
                y2.append(h*a2+y2[i-1])
 	       y3.append((y1[i-1]*y1[i-1]*4*math.pi*u[i-1]))
 	       integrate+=y3[i-1]*u[i-1]
-          print integrate
+          print 'Integrate: '+ str(integrate)
           for i in range(1,n_points):
 
 	       y4.append((y3[i-1])/integrate)
@@ -73,8 +73,8 @@ for n in range(1,4):
 	  y5.remove(max(y5)) 
  	  
           
-#	  print 'Max: '+ str(max(y5)) + ' en pos ' + str(u2[y5.index(max(y5))])
-
+	  print 'Max: '+ str(max(y5)) + ' en pos ' + str(u2[y5.index(max(y5))])
+	  print 'Valor esperado: ' + str(sum(y6))
           pylab.plot(u , y4, 'ko')
          # pylab.xlim([0,b])
           pylab.xlabel('$u$')
@@ -83,7 +83,7 @@ for n in range(1,4):
           pylab.savefig(str(n)+','+str(l)+'.png')
           pylab.close()
 
-print sum(y6)
+
 
 
 
