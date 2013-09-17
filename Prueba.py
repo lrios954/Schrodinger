@@ -22,7 +22,7 @@ def y2_prime(u,y1,y2,E,l):
 # Definimos el intervalo [a,b] donde queremos resolver nuestra ecuacion diferencial y definimos el paso h que vamos a tomar
 
 a = 0.0
-b = 45.0
+b = 6.0
 h = 0.1
 
 n_points = int((b-a)/h)
@@ -30,18 +30,17 @@ u = [a+i*h for i in range(1,n_points+1)]
 
 for n in range(1,4):
      #E = -1.0/float(n**2)
-     E= -1.0/100.0
+     E= -1.0
      L = [l*(l+1) for l in range(n)]
-     for l in range(len(L)):
+     for l in L:
           print 'solving for: n = '+str(n)+', l = '+str(l)
           y1 = []
           y2 = []
 	  y3 = []
 	  integrate=0.0	
 	  y4=[]
-	  y5=[]
-	  u2=[]
-	  y6=[]
+	
+	  umax=0.0
           if l == 0 :
                y1.append(1.0)
                y2.append(1.0)
@@ -56,7 +55,7 @@ for n in range(1,4):
           for i in range(1,n_points):
 
                a1 = y1_prime(y2[i-1])
-               a2 = y2_prime(u[i-1],y1[i-1],y2[i-1],E,L[l])
+               a2 = y2_prime(u[i-1],y1[i-1],y2[i-1],E,l)
 
                y1.append((h*a1+y1[i-1]))
                y2.append(h*a2+y2[i-1])
@@ -66,14 +65,10 @@ for n in range(1,4):
           for i in range(1,n_points):
 
 	       y4.append((y3[i-1])/integrate)
-	       y6.append(y4[i-1]*u[i-1]*u[i-1])
-	       
-	  y5=y4[:] 
-	  u2=u[:]
-	  y5.remove(max(y5)) 
- 	  
-          
-#	  print 'Max: '+ str(max(y5)) + ' en pos ' + str(u2[y5.index(max(y5))])
+	  print 'Max: '+ str(max(y4)) + ' en pos ' + u[y4.index(max(y4))]
+	  
+		
+
 
           pylab.plot(u , y4, 'ko')
          # pylab.xlim([0,b])
@@ -83,7 +78,7 @@ for n in range(1,4):
           pylab.savefig(str(n)+','+str(l)+'.png')
           pylab.close()
 
-print y6
+
 
 
 
